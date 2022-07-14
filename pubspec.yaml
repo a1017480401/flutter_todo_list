@@ -39,6 +39,8 @@ dependencies:
   #json序列化
   json_serializable: ^6.1.5
   json_annotation: ^4.4.0
+  #主要的ui
+  fluent_ui: ^3.10.0
 
 dev_dependencies:
   flutter_test:

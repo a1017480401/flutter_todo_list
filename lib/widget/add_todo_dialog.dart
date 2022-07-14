@@ -18,8 +18,7 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
           margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 50),
           constraints: const BoxConstraints(
               maxHeight: 600, maxWidth: 600, minWidth: 100, minHeight: 100),
-          decoration: BoxDecoration(
-              color: Colors.black87, borderRadius: BorderRadius.circular(20)),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
           child: Stack(
             children: [
               Padding(

@@ -1,5 +1,6 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart' show Scaffold, FloatingActionButton;
 import 'package:flutter_todo_list/entity/todo_item.dart';
 import 'package:flutter_todo_list/widget/add_todo_dialog.dart';
 
@@ -20,9 +21,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return FluentApp(
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        brightness: Brightness.dark,
       ),
       debugShowCheckedModeBanner: false,
       home: const MyHomePage(),
@@ -53,28 +54,41 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                (context, index) => Container(
-                      width: double.infinity,
-                      height: 200,
-                      color: Colors.red,
-                      child: Text(
-                        todoList[index].title,
-                      ),
-                    ),
-                childCount: todoList.length),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Spacer(),
+                Button(
+                  onPressed: addTodoDialog,
+                  child: const Text('新增'),
+                )
+              ],
+            ),
+            Expanded(
+              child: CustomScrollView(
+                physics: const BouncingScrollPhysics(),
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                        (context, index) => Container(
+                              width: double.infinity,
+                              height: 200,
+                              color: Colors.red,
+                              child: Text(
+                                todoList[index].title,
+                              ),
+                            ),
+                        childCount: todoList.length),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: addTodoDialog,
-        tooltip: '新增事项',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
